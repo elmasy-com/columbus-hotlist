@@ -12,7 +12,7 @@ Currently used tools:
 The required tools are comes with this repository. See the `bin/` directory.
 
 This script is using [columbus-cli](https://github.com/elmasy-com/columbus-cli) to interact with the Columbus Server.
-To use this script, the `COLUMBUS_SERVER` environment variable must set.
+To use this script, the `COLUMBUS_KEY` environment variable must set.
 
 `run.sh` must be executed in this directory!
 
