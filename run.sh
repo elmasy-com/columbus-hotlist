@@ -46,7 +46,7 @@ do
 
     RESULT="${DOMAIN}.result"
 
-    echo "  -> Running Amass..." 
+    echo "  -> Running Amass at $(date +%H:%M)..." 
     OUTPUT=$(./bin/amass enum -d "$DOMAIN" -o ${DOMAIN}.result 2>&1)
     if [ $? != 0 ]
     then
@@ -57,7 +57,7 @@ do
         continue
     fi
 
-    echo "  -> Running Subfinder..."
+    echo "  -> Running Subfinder at $(date +%H:%M)..."
     OUTPUT=$(./bin/subfinder -silent -d "$DOMAIN" >> "${DOMAIN}.result" 2>&1)
     if [ $? != 0 ]
     then
@@ -68,7 +68,7 @@ do
         continue
     fi
 
-    echo "  -> Inserting..."
+    echo "  -> Inserting at $(date +%H:%M)..."
     OUTPUT=$(./bin/columbus insert file "${DOMAIN}.result" 2>&1)
     if [ $? != 0 ]
     then
@@ -85,7 +85,7 @@ done < "$FILE"
 
 if [ -f "failed.list" ]
 then
-    echo "Inserting leftover..."
+    echo "Inserting leftover at $(date +%H:%M)..."
     OUTPUT=$(./bin/columbus insert file failed.list  2>&1)
     if [ $? != 0 ]
     then
