@@ -20,6 +20,7 @@ if [ $? != 0 ]
 then
     echo "Failed to verify binaries!"
     echo "$OUTPUT"
+    rm "$RUNFILE"
     exit 1
 fi
 
@@ -52,28 +53,28 @@ do
         echo "Amass failed:"
         echo $OUTPUT
         cat "$RESULT" >> failed.list
-        $ISFAILED=1
+        ISFAILED=1
         continue
     fi
 
     echo "  -> Running Subfinder..."
-    OUTPUT=$(./bin/subfinder -silent -d "$DOMAIN" >> "${DOMAIN}.result")
+    OUTPUT=$(./bin/subfinder -silent -d "$DOMAIN" >> "${DOMAIN}.result" 2>&1)
     if [ $? != 0 ]
     then
         echo "Subfinder failed:"
         echo $OUTPUT
         cat "$RESULT" >> failed.list
-        $ISFAILED=1
+        ISFAILED=1
         continue
     fi
 
     echo "  -> Inserting..."
-    OUTPUT=$(./bin/columbus insert file "${DOMAIN}.result")
+    OUTPUT=$(./bin/columbus insert file "${DOMAIN}.result" 2>&1)
     if [ $? != 0 ]
     then
         echo "Columbus failed:"
         echo $OUTPUT
-        $ISFAILED=1
+        ISFAILED=1
         continue
     fi
 
@@ -85,12 +86,12 @@ done < "$FILE"
 if [ -f "failed.list" ]
 then
     echo "Inserting leftover..."
-    OUTPUT=$(./bin/columbus insert file failed.list)
+    OUTPUT=$(./bin/columbus insert file failed.list  2>&1)
     if [ $? != 0 ]
     then
         echo "Columbus failed:"
         echo $OUTPUT
-        $ISFAILED=1
+        ISFAILED=1
     else
         rm failed.list
     fi
