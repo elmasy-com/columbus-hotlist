@@ -1,6 +1,6 @@
 # columbus-popular
 
-This repository is used to collect commonly used, popular domains and periodically run external tools on it to keep the Columbus Server up-to-date.
+This repository is used to collect commonly used, popular domains and periodically run external tools on it to keep the [Columbus Server](https://github.com/elmasy-com/columbus-server) up-to-date.
 
 Currently used tools:
 - [Subfinder](https://github.com/projectdiscovery/subfinder)
@@ -27,7 +27,7 @@ Example to run every hour:
 
 If a file with name `uptimehook` exist, the script will call the content URL on every iteration.
 
-Example of `uptimehook`:
+Example content of `uptimehook` file:
 ```
 https://example.com/uptimehook
 ```
