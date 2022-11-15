@@ -32,7 +32,15 @@ Example content of `uptimehook` file:
 https://example.com/uptimehook
 ```
 
-## List format
+## List
+
+The can be found in `popular.domains`.
+
+The current list is a small collection that contains domains from a few popular bug bounty programs.
+
+Anybody can create a PR to add domains.
+
+### List Format
 
 - Comment is allowed with `//`
 - Empty lines are ignored
